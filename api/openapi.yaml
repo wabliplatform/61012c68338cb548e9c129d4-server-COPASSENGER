@@ -1,0 +1,201 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: lampralexandros@gmail.com
+  description: This is a sample openApi document
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://wabli.netlify.app/
+  title: TempApi
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- description: local-host
+  url: http://localhost:8090/v1
+security:
+- {}
+tags:
+- description: not yet ready
+  name: uprofile
+paths:
+  /uprofile:
+    post:
+      operationId: createuprofile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/uprofile'
+        description: data to be created
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uprofile'
+          description: successful operation
+      summary: Creates the data
+      tags:
+      - uprofile
+      x-eov-operation-handler: controllers/UprofileController
+  /uprofile/{uprofileId}:
+    delete:
+      operationId: deleteuprofile
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: uprofileId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: successful operation
+      summary: Delete the element
+      tags:
+      - uprofile
+      x-eov-operation-handler: controllers/UprofileController
+    get:
+      operationId: getuprofile
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: uprofileId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uprofile'
+          description: successful operation
+      summary: Get the element
+      tags:
+      - uprofile
+      x-eov-operation-handler: controllers/UprofileController
+    put:
+      operationId: updateuprofile
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: uprofileId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/uprofile'
+        description: data to be updated
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uprofile'
+          description: successful operation
+      summary: Updates the element
+      tags:
+      - uprofile
+      x-eov-operation-handler: controllers/UprofileController
+  /uprofile/getAll:
+    get:
+      operationId: getAlluprofile
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/uprofile'
+                type: array
+          description: successful operation
+      summary: Get all the data
+      tags:
+      - uprofile
+      x-method-getAll: "true"
+      x-eov-operation-handler: controllers/UprofileController
+  /uprofile/getByParams:
+    get:
+      operationId: getByParamsuprofile
+      parameters:
+      - description: the query based on which the search is performed
+        explode: true
+        in: query
+        name: filter
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/uprofile'
+                type: array
+          description: successful operation
+      summary: Get all the data based on user query
+      tags:
+      - uprofile
+      x-method-get-by-params: "true"
+      x-eov-operation-handler: controllers/UprofileController
+components:
+  schemas:
+    uprofile:
+      example:
+        upassword: upassword
+        umale: umale
+        ulastname: ulastname
+        uname: uname
+        _id: _id
+        uphone: 0.8008281904610115
+        udate: 2000-01-23
+        uemail: uemail
+        uadress: uadress
+      properties:
+        _id:
+          type: string
+        uemail:
+          type: string
+        upassword:
+          format: password
+          type: string
+        uname:
+          type: string
+        ulastname:
+          type: string
+        umale:
+          type: string
+        uadress:
+          type: string
+        udate:
+          format: date
+          type: string
+        uphone:
+          format: double
+          type: number
+      required:
+      - uadress
+      - udate
+      - uemail
+      - ulastname
+      - umale
+      - uname
+      - upassword
+      - uphone
+      type: object
