@@ -14,6 +14,6 @@ jobs:
           password: ${{ secrets.WABLI_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.WABLI_SERVER_SSH_PORT }}
           script: >-
-            ./wabli-applications/deploy.sh -b main -d local-host -r
+            ./wabli-applications/deploy.sh -b main -d okthess-community-6004 -r
             https://github.com/wabliplatform/61012c68338cb548e9c129d4-server-COPASSENGER.git
-            -f 61012c68338cb548e9c129d4-server-COPASSENGER -p 8090
+            -f 61012c68338cb548e9c129d4-server-COPASSENGER -p 6006
